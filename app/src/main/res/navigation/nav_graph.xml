@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/provincialTaxesFragment">
+
+    <fragment
+        android:id="@+id/gstQuickMethodFragment"
+        android:name="com.exb67.acanadiantaxcalculator.GstQuickMethodFragment"
+        android:label="fragment_gst_quick_method"
+        tools:layout="@layout/fragment_gst_quick_method" />
+    <fragment
+        android:id="@+id/provincialTaxesFragment"
+        android:name="com.exb67.acanadiantaxcalculator.ProvincialTaxesFragment"
+        android:label="fragment_provincial_taxes"
+        tools:layout="@layout/fragment_provincial_taxes" >
+        <action
+            android:id="@+id/action_provincialTaxesFragment_to_mortgageEstimatorFragment"
+            app:destination="@id/mortgageEstimatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mortgageEstimatorFragment"
+        android:name="com.exb67.acanadiantaxcalculator.MortgageEstimatorFragment"
+        android:label="fragment_mortgage_estimator"
+        tools:layout="@layout/fragment_mortgage_estimator" />
+</navigation>

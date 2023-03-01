@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">A Canadian Tax Calculator</string>
+    <string name="description_text">This is the description text of the Provincial Taxes .</string>
+    <string-array name="general_data_titles">
+        <item>Select A Province/Territory</item>
+        <item>Alberta</item>
+        <item>British Columbia</item>
+        <item>Manitoba</item>
+        <item>New Brunswick</item>
+        <item>Newfoundland and Labrador</item>
+        <item>Northwest Territories</item>
+        <item>Nova Scotia</item>
+        <item>Nunavut</item>
+        <item>Ontario</item>
+        <item>Prince Edward Island</item>
+        <item>Quebec</item>
+        <item>Saskatchewan</item>
+        <item>Yukon</item>
+    </string-array>
+
 </resources>

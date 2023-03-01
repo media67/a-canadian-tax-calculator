@@ -8,20 +8,16 @@
     <fragment
         android:id="@+id/gstQuickMethodFragment"
         android:name="com.exb67.acanadiantaxcalculator.GstQuickMethodFragment"
-        android:label="fragment_gst_quick_method"
+        android:label="GST Quick Method"
         tools:layout="@layout/fragment_gst_quick_method" />
     <fragment
         android:id="@+id/provincialTaxesFragment"
         android:name="com.exb67.acanadiantaxcalculator.ProvincialTaxesFragment"
-        android:label="fragment_provincial_taxes"
-        tools:layout="@layout/fragment_provincial_taxes" >
-        <action
-            android:id="@+id/action_provincialTaxesFragment_to_mortgageEstimatorFragment"
-            app:destination="@id/mortgageEstimatorFragment" />
-    </fragment>
+        android:label="Provincial Taxes"
+        tools:layout="@layout/fragment_provincial_taxes"/>
     <fragment
         android:id="@+id/mortgageEstimatorFragment"
         android:name="com.exb67.acanadiantaxcalculator.MortgageEstimatorFragment"
-        android:label="fragment_mortgage_estimator"
+        android:label="Mortgage Estimator"
         tools:layout="@layout/fragment_mortgage_estimator" />
 </navigation>

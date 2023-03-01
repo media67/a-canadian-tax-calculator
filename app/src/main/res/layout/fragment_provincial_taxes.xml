@@ -7,6 +7,9 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.exb67.acanadiantaxcalculator.model.TaxesViewModel" />
+        <variable
             name="provincialTaxesFragment"
             type="com.exb67.acanadiantaxcalculator.ProvincialTaxesFragment" />
     </data>
@@ -14,29 +17,85 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
+
 
             <TextView
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="hello"
-                android:textAppearance="?attr/textAppearanceHeadline4"
+                android:layout_marginVertical="8dp"
+                android:text="@string/description_text"
+
+                android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/material_on_background_emphasis_medium"
+                app:layout_constraintBottom_toTopOf="@id/general_data_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/general_data_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:onItemSelected="@{() -> viewModel.setProvince()}"
+                android:entries="@array/general_data_titles"
+                app:layout_constraintBottom_toTopOf="@id/before_tax"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/before_tax"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="Enter amount"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/calculateButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/general_data_spinner"
+                app:placeholderText="Enter amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/before_tax_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/calculateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="Calculate"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
+                app:layout_constraintTop_toBottomOf="@id/before_tax" />
+            <TextView
+                android:id="@+id/province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.provData.title}"
+                app:layout_constraintTop_toBottomOf="@id/calculateButton"
+                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

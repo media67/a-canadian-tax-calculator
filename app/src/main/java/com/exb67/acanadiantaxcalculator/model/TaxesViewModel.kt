@@ -7,13 +7,22 @@ import androidx.lifecycle.ViewModel
 import com.exb67.acanadiantaxcalculator.domain.GeneralData
 
 const val TAG = "test"
-class TaxesViewModel: ViewModel() {
-    private val _beforeTaxAmount = MutableLiveData<Int>()
-    val beforeTaxAmount: LiveData<Int> = _beforeTaxAmount
+const val GST = 5f
 
-    private val _provData = MutableLiveData<GeneralData>(GeneralData.ALBERTA)
+class TaxesViewModel : ViewModel() {
+    private val _beforeTaxAmount = MutableLiveData(0f)
+    val beforeTaxAmount: LiveData<Float> = _beforeTaxAmount
+
+    private val _provData = MutableLiveData(GeneralData.DEFAULT)
     val provData: LiveData<GeneralData> = _provData
 
+    private var _total = MutableLiveData(0f)
+    val total: LiveData<Float> = _total
+
+    fun setBeforeTaxAmount(amount: Float?) {
+        _beforeTaxAmount.value = amount
+        Log.d(TAG, "setBeforeTaxAmount: $_beforeTaxAmount.value")
+    }
 
     fun setProvince(title: String) {
         val provinceMap = mapOf(
@@ -34,4 +43,36 @@ class TaxesViewModel: ViewModel() {
         Log.d(TAG, "setProvince: $title")
         _provData.value = provinceMap[title] ?: GeneralData.DEFAULT
     }
+
+    fun calculateTaxes() {
+        val amount: Float? = beforeTaxAmount.value
+        val firstTax = amount?.takeIf { it > 0 }?.run {
+            times(provData.value!!.taxAmount.div(100))
+        }
+        val gstTax = amount?.takeIf { it > 0 }?.run {
+            times(GST.div(100))
+        }
+        _total.value = amount?.plus(firstTax!!)?.plus(gstTax!!)
+        Log.d(TAG, "calculateTaxes: ${total.value}")
+    }
+
+    fun resetTotal() {
+        _total.value = 0f
+    }
+    fun checkCalc(): Boolean {
+        Log.d(TAG, "checkCalc: called")
+        return provData.value != GeneralData.DEFAULT && beforeTaxAmount.value != 0.0f
+    }
+
+//    fun calculateQCQuickMethodAmount(amount: Double, data: GeneralData):Double {
+//        val total = if (amount <= amount) {
+//            amount.times(data.qmData.tax30)
+//        } else {
+//            val firstThirty = amount.times(data.qmData.tax30)
+//            val remaining = (amount - amount).times(data.qmData.taxRest)
+//            firstThirty + remaining
+//        }
+//
+//        return total
+//    }
 }

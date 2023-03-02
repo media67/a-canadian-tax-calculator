@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:onItemSelected="@{() -> viewModel.setProvince()}"
+
                 android:entries="@array/general_data_titles"
                 app:layout_constraintBottom_toTopOf="@id/before_tax"
                 app:layout_constraintTop_toBottomOf="@id/description" />
@@ -63,7 +63,7 @@
                 android:layout_marginVertical="8dp"
                 android:hint="Enter amount"
                 app:hintEnabled="true"
-                app:layout_constraintBottom_toTopOf="@id/calculateButton"
+                app:layout_constraintBottom_toTopOf="@id/calculate_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/general_data_spinner"
@@ -73,14 +73,14 @@
                     android:id="@+id/before_tax_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLines="1" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/calculateButton"
+                android:id="@+id/calculate_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
@@ -90,11 +90,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/before_tax" />
             <TextView
-                android:id="@+id/province"
+                android:id="@+id/total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.provData.title}"
-                app:layout_constraintTop_toBottomOf="@id/calculateButton"
+                app:layout_constraintTop_toBottomOf="@id/calculate_button"
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
